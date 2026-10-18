@@ -2,7 +2,7 @@
 
 export default function Nav(){
  return (
-    <nav className="bg-gray-800 text-white flex p-4 fixed top-0 left-0 right-0 z-0">
+    <nav className="bg-gray-800 mb-9 text-white flex p-4 fixed top-0 left-0 right-0 z-0">
         <div className="max-w-6xl mx-auto  items-center justify-between px-4 py-3">
             <h1 className="text-xl font-bold text-yellow-400 text-heading semi-bold">🎬 MovieFinder</h1>
         </div>
