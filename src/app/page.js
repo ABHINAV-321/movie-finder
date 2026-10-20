@@ -30,26 +30,27 @@ export default function Home() {
   },[])
  
   return (
-    <div className="container pt-30 mx-auto">
-       <h1 className="text-3xl font-bold mb-4">Trending Movies</h1>
-       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {movies?.results.map((movie) => {
-          return(
-            <Link href={`/movie/${movie.id}`} key={movie.id} className="bg-slate-700 flex width-auto m-3 p-4  rounded-3xl shadow-lg overflow-x-auto shadow-blue-600/50">
-            <div className="bg-slate-700 flex   rounded-2xl  overflow-x-auto " key={movie.id}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                width={750}
-                height={1000}
-                className="w-full h-auto rounded-2xl"
-              />
+   <div className="container pt-24 md:pt-30 mx-auto px-3">
+    <h1 className="text-2xl md:text-3xl font-bold mb-4">Trending Movies</h1>
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        {movies?.results?.map((movie) => (
+            <Link
+                href={`/movie/${movie.id}`}
+                key={movie.id}
+                className="bg-slate-700 p-2 md:p-4 rounded-2xl md:rounded-3xl shadow-lg shadow-blue-600/50 hover:scale-105 transition"
+            >
+                
+                    <Image
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={movie.title}
+                        width={500}
+                        height={750}
+                        className="w-full h-auto rounded-xl md:rounded-2xl"
+                    />
               
-            </div>
             </Link>
-          )
-        })}
-      </div>          
+        ))}
     </div>
-  );
+</div>  );
 }
