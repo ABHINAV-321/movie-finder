@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function search() {
-
+    const [loading , setLoading] = useState(true)
     const [movies, setMovies] = useState([""])
     const [query, setQuery] = useState("")
 
@@ -21,6 +22,8 @@ export default function search() {
             console.log(movies)
         } catch (error) {
             console.error("Error fetching movies:", error);
+        } finally {
+            setLoading(false)
         }
     }
     useEffect(() => {
@@ -48,6 +51,13 @@ export default function search() {
         //  console.log(e.target.movie.value)
         console.log(query)
     }
+    if (loading) {
+        return <div className="flex justify-center items-center h-screen">
+            <div className="loader">
+                <p className="text-white text-lg">Loading...</p>
+            </div>
+        </div>
+    }
 
     return (
         <div>
@@ -60,11 +70,11 @@ export default function search() {
                 </form>
                 <p className="text-gray-400 mt-10 mr-5">Showing results for: {query}</p>
             </div>
-          
             <div className="container pt-3 ">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {movies?.results?.map((movie) => {
                         return (
+                             <Link href={`/movie/${movie.id}`} key={movie.id} className="">
                             <div className="bg-slate-700 flex width-auto m-3 p-4  rounded-xl shadow-lg overflow-x-auto shadow-blue-600/50" key={movie.id}>
                                 <Image
                                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -75,6 +85,7 @@ export default function search() {
                                 />
 
                             </div>
+                            </Link>
                         )
                     })}
                 </div>
